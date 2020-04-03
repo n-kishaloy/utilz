@@ -1,28 +1,29 @@
-	Fri Apr 03 19:27 2020 Time and Allocation Profiling Report  (Final)
+	Fri Apr 03 19:45 2020 Time and Allocation Profiling Report  (Final)
 
 	   utilz-test.exe +RTS -N -p -RTS
 
-	total time  =        0.00 secs   (0 ticks @ 1000 us, 8 processors)
-	total alloc =      52,272 bytes  (excludes profiling overheads)
+	total time  =        0.00 secs   (2 ticks @ 1000 us, 8 processors)
+	total alloc =      50,256 bytes  (excludes profiling overheads)
 
-COST CENTRE MODULE           SRC                  %time %alloc
+COST CENTRE MODULE                   SRC                  %time %alloc
 
-MAIN        MAIN             <built-in>             0.0    9.3
-CAF:main1   Main             <no location info>     0.0    4.1
-main        Main             test\Spec.hs:2:1-48    0.0   19.0
-CAF         GHC.IO.Handle.FD <entire-module>        0.0   66.5
+MAIN        MAIN                     <built-in>            50.0    5.7
+CAF         GHC.IO.Encoding.CodePage <entire-module>       50.0    0.4
+CAF:main1   Main                     <no location info>     0.0    4.3
+main        Main                     test\Spec.hs:2:1-48    0.0   19.8
+CAF         GHC.IO.Handle.FD         <entire-module>        0.0   69.2
 
 
                                                                              individual      inherited
 COST CENTRE  MODULE                   SRC                 no.     entries  %time %alloc   %time %alloc
 
-MAIN         MAIN                     <built-in>          137          0    0.0    9.3     0.0  100.0
+MAIN         MAIN                     <built-in>          137          0   50.0    5.7   100.0  100.0
  CAF         GHC.Conc.Windows         <entire-module>     234          0    0.0    0.4     0.0    0.4
  CAF         GHC.IO.Handle.Text       <entire-module>     199          0    0.0    0.1     0.0    0.1
- CAF         GHC.IO.Handle.FD         <entire-module>     197          0    0.0   66.5     0.0   66.5
- CAF         GHC.IO.Encoding.CodePage <entire-module>     188          0    0.0    0.4     0.0    0.4
+ CAF         GHC.IO.Handle.FD         <entire-module>     197          0    0.0   69.2     0.0   69.2
+ CAF         GHC.IO.Encoding.CodePage <entire-module>     188          0   50.0    0.4    50.0    0.4
  CAF         GHC.IO.Encoding          <entire-module>     187          0    0.0    0.1     0.0    0.1
  CAF:main    Main                     test\Spec.hs:2:1-4  145          0    0.0    0.0     0.0    0.1
   main       Main                     test\Spec.hs:2:1-48 274          1    0.0    0.1     0.0    0.1
- CAF:main1   Main                     <no location info>  144          0    0.0    4.1     0.0    4.1
- main        Main                     test\Spec.hs:2:1-48 275          0    0.0   18.9     0.0   18.9
+ CAF:main1   Main                     <no location info>  144          0    0.0    4.3     0.0    4.3
+ main        Main                     test\Spec.hs:2:1-48 275          0    0.0   19.7     0.0   19.7

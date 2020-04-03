@@ -1,6 +1,14 @@
+{-# LANGUAGE NumericUnderscores #-}
+
+
 module Utilz
-    ( someFunc
+    (   (~=)
+    
     ) where
 
-someFunc :: Num a => a -> a -> a
-someFunc x y = x + y
+(~=) :: Double -> Double -> Bool 
+(~=) x y = 
+    if (mx < 1e-5) || (abs (x-y)) / mx < 1e-7 then True else False where 
+        mx = (max (abs x) (abs y))
+
+
