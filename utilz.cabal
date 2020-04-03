@@ -27,7 +27,7 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Utilz
   other-modules:
       Paths_utilz
   hs-source-dirs:

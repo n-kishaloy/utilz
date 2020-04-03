@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import Utilz
 
 main :: IO ()
-main = someFunc
+main = print $ someFunc 4 5
