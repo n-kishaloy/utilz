@@ -27,7 +27,7 @@ source-repository head
 
 library
   exposed-modules:
-      Utilz
+      Utilz, Utilz.Numeric, Utilz.Numeric.Optima
   other-modules:
       Paths_utilz
   hs-source-dirs:

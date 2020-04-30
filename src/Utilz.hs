@@ -1,14 +1,13 @@
 {-# LANGUAGE NumericUnderscores #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE InstanceSigs #-}
 
 
 module Utilz
-    (   (~=)
-    
+    (   addUtil
     ) where
 
-(~=) :: Double -> Double -> Bool 
-(~=) x y = 
-    if (mx < 1e-5) || (abs (x-y)) / mx < 1e-7 then True else False where 
-        mx = (max (abs x) (abs y))
+
+addUtil x y = x + y
 
 
