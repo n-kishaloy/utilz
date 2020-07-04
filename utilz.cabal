@@ -38,6 +38,7 @@ library
                 ,   QuickCheck
                 ,   vector
                 ,   deepseq
+                ,   time
   default-language: Haskell2010
 
 executable utilz-exe
@@ -54,6 +55,7 @@ executable utilz-exe
                 ,   vector
                 ,   utilz
                 ,   deepseq
+                ,   time
   default-language: Haskell2010
 
 test-suite utilz-test
@@ -71,4 +73,5 @@ test-suite utilz-test
                 ,   vector
                 ,   utilz
                 ,   deepseq
+                ,   time
   default-language: Haskell2010

@@ -11,6 +11,7 @@ import qualified Utilz.Numeric.Optima as Op
 
 import qualified Data.Vector.Unboxed as U
 import Data.Vector.Unboxed  ((!))
+import Data.Time (Day, fromGregorian)
 
 main :: IO ()
 main = do 
@@ -34,6 +35,9 @@ main = do
 
     quickCheck $ ((1.2, 3.4, 2.5) :: (Double, Double, Double)) =~ (1.20000008, 3.399999999, 2.5000001)
     quickCheck $ ((1.2, 3.4, 2.5) :: (Double, Double, Double)) /~ (1.2, 3.399999999, 2.4)
+
+    quickCheck $ (fromGregorian 2018 3 30) =~ (fromGregorian 2018 3 30)
+    quickCheck $ (fromGregorian 2018 3 31) /~ (fromGregorian 2018 3 30)
 
     print ""; print $ "Newton Raphson soln"
     quickCheck $ Op.newtRaph (\x -> 12*x^4 -5*x^3 + 5) 400 =~ Nothing

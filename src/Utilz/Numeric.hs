@@ -18,6 +18,7 @@ import Data.Vector.Unboxed ((!),(//))
 import qualified Data.Vector.Unboxed as U
 import qualified Data.Vector.Unboxed.Mutable as M
 import Control.Monad.ST
+import Data.Time (Day)
 
 import Debug.Trace (trace)
 debug = flip trace
@@ -30,6 +31,8 @@ class Approx a where
 
     (/~) :: a -> a -> Bool
     (/~) x y = not $ (=~) x y
+
+instance Approx Day where (!x) =~ (!y) = x == y
 
 instance Approx Double where
     x =~ y = if (mx < 1e-5) || (abs (x-y)) / mx < 1e-7 then True else False 
