@@ -1,7 +1,7 @@
 {-# LANGUAGE NumericUnderscores #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE InstanceSigs #-}
-{-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE Strict #-}
 
 
 module Utilz.Numeric
@@ -32,7 +32,7 @@ class Approx a where
     (/~) :: a -> a -> Bool
     (/~) x y = not $ (=~) x y
 
-instance Approx Day where (!x) =~ (!y) = x == y
+instance Approx Day where x =~ y = x == y
 
 instance Approx Double where
     x =~ y = if (mx < 1e-5) || (abs (x-y)) / mx < 1e-7 then True else False 
@@ -67,15 +67,15 @@ interp :: DVec -> DVec -> Double -> DVec
 interp x y s = U.zipWith (\xi yi -> (1.0-s)*xi + s*yi) x y
 
 grad :: (DVec -> Double) -> DVec -> DVec
-grad f !v = runST $ do
-    let !f0 = f v
+grad f v = runST $ do
+    let f0 = f v
     U.forM (U.fromList [0..((U.length v) - 1)]) $ \i -> do
-        let !vi = v ! i; !dvm = vi*1e-8; !z = v // [(i, vi + dvm)] 
+        let vi = v ! i; dvm = vi*1e-8; z = v // [(i, vi + dvm)] 
         return (((f z) - f0)/dvm) -- `debug` ("hi " ++ show z)
 
 negGrad :: (DVec -> Double) -> DVec -> DVec
-negGrad f !v = runST $ do
-    let !f0 = f v
+negGrad f v = runST $ do
+    let f0 = f v
     U.forM (U.fromList [0..((U.length v) - 1)]) $ \i -> do
-        let !vi = v ! i; !dvm = vi*1e-8; !z = v // [(i, vi - dvm)] 
+        let vi = v ! i; dvm = vi*1e-8; z = v // [(i, vi - dvm)] 
         return (((f z) - f0)/dvm) -- `debug` ("hi " ++ show z)
