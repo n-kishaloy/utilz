@@ -4,8 +4,8 @@
 
 
 module Utilz
-    (   addUtil
-    ) where
+  (   addUtil
+  ) where
 
 
 addUtil x y = x + y
