@@ -62,7 +62,7 @@ main = do
 
   putStr "Divide : "; quickCheck $ v1 /^ 0.5 =~ U.fromList [2.4,6.8,9.0]
 
-  putStr "Interp : "; quickCheck $ Nu.interp (U.fromList [2.0,3.0]) (U.fromList [10.0,15.0]) 0.25 =~ (U.fromList [4.0,6.0])
+  putStr "Interp : "; quickCheck $ Nu.interp (U.fromList [2.0,3.0]) (U.fromList [10.0,15.0]) 0.25 =~   (U.fromList [4.0,6.0])
 
   putStr "Grad : "; quickCheck $ Nu.grad (\x -> (x ! 0) - (x ! 1)*5.0 + (x ! 2)**2) (U.fromList [5.0,2.0,-4.0]) =~ U.fromList [1.0,-5.0,-8.0]
 
