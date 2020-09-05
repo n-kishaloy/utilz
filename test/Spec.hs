@@ -41,6 +41,19 @@ main = do
   quickCheck $ ((1.2, 3.4, 2.5) :: (Double, Double, Double)) =~ (1.20000008, 3.399999999, 2.5000001)
   quickCheck $ ((1.2, 3.4, 2.5) :: (Double, Double, Double)) /~ (1.2, 3.399999999, 2.4)
 
+  quickCheck $ ((1.2, 3.4, 2.5) :: (Float, Float, Float)) =~ (1.20000008, 3.399999999, 2.5000001)
+  quickCheck $ ((1.2, 3.4, 2.5) :: (Float, Float, Float)) /~ (1.2, 3.399999999, 2.4)
+
+  quickCheck $ ((1, 3, 2) :: (Int, Int, Int)) =~ (1, 3, 2)
+  quickCheck $ ((1, 3, 2) :: (Int, Int, Int)) /~ (1, 3, 5)
+
+
+
+  quickCheck $ False /~ True
+  quickCheck $ True =~ True
+  quickCheck $ False =~ False
+
+
   quickCheck $ ("star"::Text) =~ ("star"::Text)
   quickCheck $ ("star"::Text) /~ ("start"::Text)
   quickCheck $ ("start"::Text) /~ ("star"::Text)

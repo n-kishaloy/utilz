@@ -41,7 +41,17 @@ instance Approx Day where x =~ y = x == y
 
 instance Approx Char where x =~ y = x == y
 
+instance Approx Bool where x =~ y = x == y
+
 instance Approx Text where x =~ y = x == y
+
+instance Approx Int where x =~ y = x == y
+
+instance Approx Integer where x =~ y = x == y
+
+instance Approx Float where
+  x =~ y = if (mx < 1e-5) || (abs (x-y)) / mx < 1e-7 then True else False 
+    where mx = (max (abs x) (abs y))
 
 instance Approx Double where
   x =~ y = if (mx < 1e-5) || (abs (x-y)) / mx < 1e-7 then True else False 
