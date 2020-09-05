@@ -34,11 +34,14 @@ library
       src
   build-depends:    base >=4.7 && <5
                 ,   containers  
+                ,   unordered-containers
+                ,   hashable
                 ,   hspec
                 ,   QuickCheck
                 ,   vector
                 ,   deepseq
                 ,   time
+                ,   text
   default-language: Haskell2010
 
 executable utilz-exe
@@ -50,12 +53,15 @@ executable utilz-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:    base >=4.7 && <5
                 ,   containers  
+                ,   unordered-containers
+                ,   hashable
                 ,   hspec
                 ,   QuickCheck
                 ,   vector
                 ,   utilz
                 ,   deepseq
                 ,   time
+                ,   text
   default-language: Haskell2010
 
 test-suite utilz-test
@@ -68,10 +74,13 @@ test-suite utilz-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:    base >=4.7 && <5
                 ,   containers  
+                ,   unordered-containers
+                ,   hashable
                 ,   hspec
                 ,   QuickCheck
                 ,   vector
                 ,   utilz
                 ,   deepseq
                 ,   time
+                ,   text
   default-language: Haskell2010

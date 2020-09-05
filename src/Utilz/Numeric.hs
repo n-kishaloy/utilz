@@ -17,8 +17,13 @@ import Data.List (foldl')
 import Data.Vector.Unboxed ((!),(//))
 import qualified Data.Vector.Unboxed as U
 import qualified Data.Vector.Unboxed.Mutable as M
+import qualified Data.Vector as V
 import Control.Monad.ST
 import Data.Time (Day)
+import qualified Data.HashMap.Strict as Hm
+import Data.Hashable
+import Data.List (foldl')
+import Data.Text (Text)
 
 import Debug.Trace (trace)
 debug = flip trace
@@ -34,6 +39,10 @@ class Approx a where
 
 instance Approx Day where x =~ y = x == y
 
+instance Approx Char where x =~ y = x == y
+
+instance Approx Text where x =~ y = x == y
+
 instance Approx Double where
   x =~ y = if (mx < 1e-5) || (abs (x-y)) / mx < 1e-7 then True else False 
     where mx = (max (abs x) (abs y))
@@ -45,7 +54,7 @@ instance Approx a => Approx (Maybe a) where
   Just x =~ Just y    =   x =~ y 
 
 instance Approx a => Approx [a] where 
-  x =~ y = foldr (&&) True $ zipWith (=~) x y
+  x =~ y = (length x == length y) && (foldr (&&) True $ zipWith (=~) x y)
 
 instance (Approx a, Approx b) => Approx (a, b) where
   (x,y) =~ (a,b) = (x =~ a) && (y =~ b)
@@ -53,8 +62,20 @@ instance (Approx a, Approx b) => Approx (a, b) where
 instance (Approx a, Approx b, Approx c) => Approx (a, b, c) where
   (x,y,z) =~ (a,b,c) = (x =~ a) && (y =~ b) && (z =~ c)
 
+instance (Approx a,Approx b,Approx c,Approx d) => Approx (a,b,c,d) where
+  (x,y,z,u) =~ (a,b,c,d) = (x =~ a) && (y =~ b) && (z =~ c) && (u =~ d)
+
 instance (M.Unbox a, Approx a) => Approx (U.Vector a) where 
-  x =~ y = U.foldr (&&) True $ U.zipWith (=~) x y
+  x =~ y = (U.length x==U.length y) && (U.foldr (&&) True $ U.zipWith (=~) x y)
+
+instance (Approx a) => Approx (V.Vector a) where 
+  x =~ y = (V.length x==V.length y) && (V.foldr (&&) True $ V.zipWith (=~) x y)
+
+instance (Eq a, Hashable a, Approx b) => Approx (Hm.HashMap a b) where
+  x =~ y = (fz x y) && (fz y x) where
+    fz p q = foldl' (f p) True $ Hm.toList q
+    f p t z = t && ((Hm.lookup k p) =~ (Just v)) where (k,v) = z 
+
 
 dot x y = U.sum $ U.zipWith (*) x y
 

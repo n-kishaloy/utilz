@@ -1,4 +1,4 @@
-{-# LANGUAGE NumericUnderscores #-}
+{-# LANGUAGE NumericUnderscores, OverloadedStrings #-}
 
 module Main where
 
@@ -10,8 +10,13 @@ import qualified Utilz.Numeric as Nu
 import qualified Utilz.Numeric.Optima as Op
 
 import qualified Data.Vector.Unboxed as U
+import qualified Data.Vector as V
 import Data.Vector.Unboxed  ((!))
 import Data.Time (Day, fromGregorian)
+import qualified Data.HashMap.Strict as Hm
+import Data.Text (Text)
+
+
 
 main :: IO ()
 main = do 
@@ -28,7 +33,7 @@ main = do
 
   quickCheck $ ([1.2, 3.4, 5.6] :: [Double]) /~ [1.2, 3.4, 5.65]
   quickCheck $ ([2.3, 1,2, 1000] :: [Double]) =~ [2.3, 1,2, 1e+3]
-  quickCheck $ ([1.0,1.0,1.0,1.0] :: [Double]) =~ [1.0,1.0..]
+  quickCheck $ ([1.0,1.0,1.0,1.0] :: [Double]) /~ [1.0,1.0,1.0,1.0,2.0]
 
   quickCheck $ ((1.2, 3.4) :: (Double, Double)) =~ (1.20000008, 3.399999999)
   quickCheck $ ((1.2, 3.5) :: (Double, Double)) /~ (1.20000008, 3.399999999)
@@ -36,8 +41,47 @@ main = do
   quickCheck $ ((1.2, 3.4, 2.5) :: (Double, Double, Double)) =~ (1.20000008, 3.399999999, 2.5000001)
   quickCheck $ ((1.2, 3.4, 2.5) :: (Double, Double, Double)) /~ (1.2, 3.399999999, 2.4)
 
+  quickCheck $ ("star"::Text) =~ ("star"::Text)
+  quickCheck $ ("star"::Text) /~ ("start"::Text)
+  quickCheck $ ("start"::Text) /~ ("star"::Text)
+
+  quickCheck $ ("star"::String) =~ ("star"::String)
+  quickCheck $ ("star"::String) /~ ("start"::String)
+  quickCheck $ ("start"::String) /~ ("star"::String)
+
   quickCheck $ (fromGregorian 2018 3 30) =~ (fromGregorian 2018 3 30)
   quickCheck $ (fromGregorian 2018 3 31) /~ (fromGregorian 2018 3 30)
+
+  let rb = Hm.fromList [("Cash", 10.23), ("CurrentAdvances", 56.25), ("AccountPayables", 0.0)] :: Hm.HashMap String Double
+  let tb = Hm.fromList [("Cash", 10.23), ("CurrentAdvances", 56.25)] :: Hm.HashMap String Double
+
+  quickCheck $ rb /~ tb
+  quickCheck $ tb /~ rb
+
+  let rb = Hm.fromList [("Cash", 10.23), ("CurrentAdvances", 56.25)] :: Hm.HashMap String Double
+
+  quickCheck $ rb =~ tb
+  quickCheck $ tb =~ rb
+
+  let rb = Hm.fromList [("Cash", Just 10.23), ("CurrentAdvances", Just 56.25), ("AccountPayables", Just 0.0)] :: Hm.HashMap String (Maybe Double)
+  let tb = Hm.fromList [("Cash", Just 10.23), ("CurrentAdvances", Just 56.25)] :: Hm.HashMap String (Maybe Double)
+
+  quickCheck $ rb /~ tb
+  quickCheck $ tb /~ rb
+
+  let rb = Hm.fromList [("Cash", Just 10.23), ("CurrentAdvances", Just 56.25)] :: Hm.HashMap String (Maybe Double)
+
+  quickCheck $ rb =~ tb
+  quickCheck $ tb =~ rb
+
+  let rb = V.fromList [("Cash", Just 10.23), ("CurrentAdvances", Just 56.25), ("AccountPayables", Just 0.0)] :: V.Vector (String, Maybe Double)
+  let tb = V.fromList [("Cash", Just 10.23), ("CurrentAdvances", Just 56.25)] :: V.Vector (String, Maybe Double)
+
+  quickCheck $ rb /~ tb
+
+  let rb = V.fromList [("Cash", Just 10.24), ("CurrentAdvances", Just 56.25)] :: V.Vector (String, Maybe Double)
+
+  quickCheck $ rb /~ tb
 
   print ""; print $ "Newton Raphson soln"
   quickCheck $ Op.newtRaph (\x -> 12*x^4 -5*x^3 + 5) 400 =~ Nothing
