@@ -12,7 +12,8 @@ module Utilz.Numeric.Optima
 , conjGradPR
 ) where 
 
-import Utilz.Numeric ((=~),(/~),dot,(+^), (-^), (*^), (/^), DVec)
+import Utilz.Numeric (dot,(+^), (-^), (*^), (/^), DVec)
+import Approx
 
 import qualified Data.Vector.Unboxed as U
 import qualified Data.Vector.Unboxed.Mutable as M

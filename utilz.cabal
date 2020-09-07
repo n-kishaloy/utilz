@@ -42,6 +42,7 @@ library
                 ,   deepseq
                 ,   time
                 ,   text
+                ,   approx
   default-language: Haskell2010
 
 executable utilz-exe
@@ -62,6 +63,7 @@ executable utilz-exe
                 ,   deepseq
                 ,   time
                 ,   text
+                ,   approx
   default-language: Haskell2010
 
 test-suite utilz-test
@@ -83,4 +85,5 @@ test-suite utilz-test
                 ,   deepseq
                 ,   time
                 ,   text
+                ,   approx
   default-language: Haskell2010

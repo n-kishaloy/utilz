@@ -3,7 +3,18 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    name: approx
+    version: 0.1.0.0
+    git: https://github.com/n-kishaloy/approx.git
+    pantry-tree:
+      size: 670
+      sha256: bce235d8de275b1090068f52b71e2cbdf3aea317e04710b2d8927528ff82593f
+    commit: 3ede4fc84fdd951e47d471667c7e997eec1a630c
+  original:
+    git: https://github.com/n-kishaloy/approx.git
+    commit: 3ede4fc84fdd951e47d471667c7e997eec1a630c
 snapshots:
 - completed:
     size: 491387
