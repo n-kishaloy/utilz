@@ -5,16 +5,16 @@
 
 packages:
 - completed:
-    size: 7173
-    url: https://github.com/n-kishaloy/approx/archive/v0.1.0.0.tar.gz
     name: approx
     version: 0.1.0.0
-    sha256: 077224cca94ff1fc3be5606264698b9632ed20f99e4e37339a6f0b38b0035edd
+    git: https://github.com/n-kishaloy/approx.git
     pantry-tree:
-      size: 673
-      sha256: 7cd9451b086ce349441c33fc2951446678cf6408517aa8609684582aacdbc182
+      size: 678
+      sha256: be95f2207fcdb32fc20d3f9f4e38eba52d2288d2b264c5770b31eb279874810e
+    commit: 3b34d7fbee5abaa2bffd50ec0388df907349bd79
   original:
-    url: https://github.com/n-kishaloy/approx/archive/v0.1.0.0.tar.gz
+    git: https://github.com/n-kishaloy/approx.git
+    commit: 3b34d7fbee5abaa2bffd50ec0388df907349bd79
 snapshots:
 - completed:
     size: 491387

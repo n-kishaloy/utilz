@@ -13,7 +13,7 @@ module Utilz.Numeric.Optima
 ) where 
 
 import Utilz.Numeric (dot,(+^), (-^), (*^), (/^), DVec)
-import Approx
+import Data.Approx
 
 import qualified Data.Vector.Unboxed as U
 import qualified Data.Vector.Unboxed.Mutable as M

@@ -41,8 +41,11 @@ packages:
 #
 extra-deps: 
 
-- https://github.com/n-kishaloy/approx/archive/v0.1.0.0.tar.gz
-  # commit: c805bf8c8d654c573848ba9c7a1aa9d1733c42ef
+# - https://github.com/n-kishaloy/approx/archive/v0.1.0.0.tar.gz
+
+- git: https://github.com/n-kishaloy/approx.git
+  commit: 3b34d7fbee5abaa2bffd50ec0388df907349bd79
+
 
 
 

@@ -5,7 +5,7 @@ module Main where
 import Test.QuickCheck 
 
 import Utilz.Numeric (dot,(+^), (-^), (*^), (/^))
-import Approx 
+import Data.Approx 
 import qualified Utilz as Ut
 import qualified Utilz.Numeric as Nu
 import qualified Utilz.Numeric.Optima as Op
